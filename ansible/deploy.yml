@@ -1,0 +1,27 @@
+- name: Deploy Docker Container to Target Server
+  hosts: target_servers
+  become: true
+  tasks:
+    - name: Ensure Docker is installed
+      apt:
+        name: docker.io
+        state: present
+        update_cache: yes
+
+    - name: Pull latest Docker image
+      docker_image:
+        name: "your-dockerhub-username/my-app:latest"
+        source: pull
+
+    - name: Stop existing container
+      docker_container:
+        name: my-app-container
+        state: absent
+
+    - name: Run updated Docker container
+      docker_container:
+        name: my-app-container
+        image: "your-dockerhub-username/my-app:latest"
+        state: started
+        published_ports:
+          - "80:3000"
