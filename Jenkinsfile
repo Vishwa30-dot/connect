@@ -1,13 +1,13 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE = "your-dockerhub-username/my-app"
-        REGISTRY_CREDENTIALS = "docker-hub-credentials-id"
+        DOCKER_IMAGE = "vishwap3110/my-app"
+        REGISTRY_CREDENTIALS = "4532b6ec-590a-4026-9127-dd223c338b06"
     }
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/your-username/your-repo.git'
+                git branch: 'master', url: 'https://github.com/Vishwa30-dot/connect.git'
             }
         }
         stage('Build Docker Image') {
